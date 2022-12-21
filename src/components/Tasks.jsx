@@ -13,13 +13,15 @@ const Tasks = () => {
     }
   };
 
+  // handleRemoveTask function removes the task on click
   const handleRemoveTask = (taskName) => {
-    setTasks((current) => current.filter((task) => task.name !== taskName));
+    // pushing the taskname into an tasksDone array and then setting tasksDone array for doneTasks state
     tasksDone.push({
       name: taskName,
     });
     setDoneTasks(tasksDone);
     console.log(doneTasks);
+    setTasks((current) => current.filter((task) => task.name !== taskName));
   };
 
   return (

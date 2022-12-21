@@ -8,6 +8,7 @@ const CompletedTasks = () => {
     <div className="completed-tasks-div">
       <h2>CompletedTasks</h2>
       <div className="tasks-container">
+        {/* map function to render task names from doneTasks state */}
         {doneTasks.map((task, index) => (
           <p key={index}>{task.name}</p>
         ))}

@@ -1,8 +1,11 @@
+import { useState } from "react";
 import "./App.css";
 import Tasks from "./components/Tasks";
 import CompletedTasks from "./components/CompletedTasks";
+import shareTask from "./util/userContext";
 
 function App() {
+  const [doneTasks, setDoneTasks] = useState([]);
   return (
     <div className="App">
       <header>
@@ -11,8 +14,10 @@ function App() {
       </header>
       <button>Swap All</button>
       <main>
-        <Tasks></Tasks>
-        <CompletedTasks></CompletedTasks>
+        <shareTask.Provider value={{ doneTasks, setDoneTasks }}>
+          <Tasks />
+          <CompletedTasks />
+        </shareTask.Provider>
       </main>
     </div>
   );

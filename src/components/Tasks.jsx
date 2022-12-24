@@ -1,11 +1,13 @@
-import React, { useState, useContext } from "react";
-import addedTasks from "../util/addedTasks";
+import React, { useContext } from "react";
+// import addedTasks from "../util/addedTasks";
 import tasksDone from "../util/tasksDone";
-import shareTask from "../util/userContext";
+// import shareTask from "../util/userContext";
+import { ShareTask } from "../util/userContext";
 
 const Tasks = () => {
-  const { doneTasks, setDoneTasks } = useContext(shareTask);
-  const [tasks, setTasks] = useState(addedTasks);
+  const { setDoneTasks } = useContext(ShareTask);
+  // const [tasks, setTasks] = useState(addedTasks);
+  const { tasks, setTasks } = useContext(ShareTask);
 
   const handleAddTAsk = (task) => {
     if (task !== "") {
@@ -20,7 +22,7 @@ const Tasks = () => {
       name: taskName,
     });
     setDoneTasks(tasksDone);
-    console.log(doneTasks);
+    // console.log(doneTasks);
     setTasks((current) => current.filter((task) => task.name !== taskName));
   };
 
@@ -33,7 +35,7 @@ const Tasks = () => {
           <p
             onClick={(e) => {
               const removeTaskName = e.target.innerText;
-              console.log(removeTaskName);
+              // console.log(removeTaskName);
               handleRemoveTask(removeTaskName);
             }}
             className="single-task"

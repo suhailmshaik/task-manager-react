@@ -1,23 +1,54 @@
-import { useState } from "react";
+import { useContext } from "react";
+import { ShareTask } from "./util/userContext";
 import "./App.css";
 import Tasks from "./components/Tasks";
 import CompletedTasks from "./components/CompletedTasks";
-import shareTask from "./util/userContext";
 
 function App() {
-  const [doneTasks, setDoneTasks] = useState([]);
+  const { doneTasks, setDoneTasks } = useContext(ShareTask);
+  const { tasks, setTasks } = useContext(ShareTask);
+  // const { alert, showAlert } = useContext(ShareTask);
+
+  const swap = () => {
+    setTasks(doneTasks);
+    setDoneTasks(tasks);
+  };
+
+  // const undoSwap = () => {
+  //   setTasks(doneTasks);
+  //   setDoneTasks(tasks);
+  // };
+
   return (
     <div className="App">
+      {/* {alert ? (
+        <div className="alert show">
+          <p>swapped successfully!</p>
+          <button
+            onClick={() => {
+              undoSwap();
+            }}
+          >
+            undo
+          </button>
+        </div>
+      ) : null} */}
+
       <header>
         <h1>TaskZ</h1>
         <p>A task manager built using react.js</p>
       </header>
-      <button>Swap All</button>
+      <button
+        onClick={() => {
+          swap();
+          // showAlert(true);
+        }}
+      >
+        Swap All
+      </button>
       <main>
-        <shareTask.Provider value={{ doneTasks, setDoneTasks }}>
-          <Tasks />
-          <CompletedTasks />
-        </shareTask.Provider>
+        <Tasks />
+        <CompletedTasks />
       </main>
     </div>
   );

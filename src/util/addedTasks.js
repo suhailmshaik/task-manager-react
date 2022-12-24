@@ -1,4 +1,4 @@
-const addedTasks = [
+let addedTasks = [
   { name: "homework" },
   {
     name: "meeting",
